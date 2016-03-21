@@ -1,6 +1,7 @@
 package com.inthecheesefactory.lab.designlibrary;
 
 import android.content.res.Configuration;
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -42,10 +43,13 @@ public class MainActivity extends AppCompatActivity {
     private void initInstances() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
-        drawerLayout.setDrawerListener(drawerToggle);
+//        drawerLayout.setDrawerListener(drawerToggle);
+        drawerLayout.addDrawerListener(drawerToggle);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
 
@@ -65,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
-        collapsingToolbarLayout.setTitle("Design Library");
+        if(collapsingToolbarLayout != null) {
+            collapsingToolbarLayout.setTitle("Design Library");
+        }
     }
 
     @Override
