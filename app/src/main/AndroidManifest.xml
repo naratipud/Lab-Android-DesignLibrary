@@ -11,8 +11,7 @@
 
         <activity
             android:name=".CodeLabActivity"
-            android:label="@string/title_activity_code_lab"
-            android:theme="@style/AppTheme">
+            android:label="@string/title_activity_code_lab">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
