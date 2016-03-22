@@ -1,23 +1,27 @@
 package com.inthecheesefactory.lab.designlibrary;
 
 import android.content.res.Configuration;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class CodeLabActivity extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle drawerToggle;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private FloatingActionButton plusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_lab);
-        
+
         initInstances();
     }
 
@@ -27,10 +31,19 @@ public class CodeLabActivity extends AppCompatActivity {
 //        drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.addDrawerListener(drawerToggle);
 
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        plusButton = (FloatingActionButton) findViewById(R.id.plus_fab);
+        plusButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CodeLabActivity.this, "FAB click !", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
