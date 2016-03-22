@@ -1,20 +1,23 @@
 package com.inthecheesefactory.lab.designlibrary;
 
 import android.content.res.Configuration;
+import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 public class CodeLabActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+    //    private FrameLayout rootLayout;
+    private CoordinatorLayout rootLayout;
     private FloatingActionButton plusButton;
 
     @Override
@@ -36,12 +39,22 @@ public class CodeLabActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+//        rootLayout = (FrameLayout) findViewById(R.id.rootLayout);
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+
         plusButton = (FloatingActionButton) findViewById(R.id.plus_fab);
         plusButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(CodeLabActivity.this, "FAB click !", Toast.LENGTH_SHORT).show();
+                Snackbar.make(rootLayout, "Hello, I'm a Snackbar !", Snackbar.LENGTH_SHORT)
+                        .setAction("Undo", new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        }).show();
             }
         });
     }
