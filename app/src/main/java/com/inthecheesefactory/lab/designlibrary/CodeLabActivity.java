@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,7 @@ public class CodeLabActivity extends AppCompatActivity {
     private CoordinatorLayout rootLayout;
     private FloatingActionButton plusButton;
     private Toolbar toolbar;
-    private TabLayout tabLayout;
+//    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class CodeLabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_code_lab);
 
         initToolbar();
-        initTabLayout();
+//        initTabLayout();
         initInstances();
     }
 
@@ -39,14 +38,14 @@ public class CodeLabActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void initTabLayout() {
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        if (tabLayout != null) {
-            tabLayout.addTab(tabLayout.newTab().setText("TAB 1"));
-            tabLayout.addTab(tabLayout.newTab().setText("TAB 2"));
-            tabLayout.addTab(tabLayout.newTab().setText("TAB 3"));
-        }
-    }
+//    private void initTabLayout() {
+//        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+//        if (tabLayout != null) {
+//            tabLayout.addTab(tabLayout.newTab().setText("TAB 1"));
+//            tabLayout.addTab(tabLayout.newTab().setText("TAB 2"));
+//            tabLayout.addTab(tabLayout.newTab().setText("TAB 3"));
+//        }
+//    }
 
     private void initInstances() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
