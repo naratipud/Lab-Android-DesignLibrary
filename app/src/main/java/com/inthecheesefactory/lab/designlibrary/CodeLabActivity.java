@@ -4,7 +4,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +23,8 @@ public class CodeLabActivity extends AppCompatActivity {
     private CoordinatorLayout rootLayout;
     private FloatingActionButton plusButton;
     private Toolbar toolbar;
-//    private TabLayout tabLayout;
+    //    private TabLayout tabLayout;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class CodeLabActivity extends AppCompatActivity {
         initToolbar();
 //        initTabLayout();
         initInstances();
+        initNavigation();
     }
 
     private void initToolbar() {
@@ -78,6 +82,46 @@ public class CodeLabActivity extends AppCompatActivity {
         });
     }
 
+
+    private void initNavigation() {
+        mNavigationView = (NavigationView) findViewById(R.id.navigation);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int menuId = item.getItemId();
+                CharSequence menuTitle = item.getTitle();
+                switch (menuId) {
+                    case R.id.navItem1:
+                        showSnackbarWhenNavItemSelected(menuTitle);
+                        break;
+                    case R.id.navItem2:
+                        showSnackbarWhenNavItemSelected(menuTitle);
+                        break;
+                    case R.id.navItem3:
+                        showSnackbarWhenNavItemSelected(menuTitle);
+                        break;
+                    case R.id.navItem4:
+                        showSnackbarWhenNavItemSelected(menuTitle);
+                        break;
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
+    }
+
+    private void showSnackbarWhenNavItemSelected(CharSequence title) {
+        Snackbar.make(rootLayout, "Hello, " + title, Snackbar.LENGTH_SHORT)
+                .setAction("Undo", new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }).show();
+    }
+
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -113,5 +157,14 @@ public class CodeLabActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
